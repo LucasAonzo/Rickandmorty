@@ -1,70 +1,168 @@
-# Getting Started with Create React App
+# **HW 06: React-Intro | Integración**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## **Duración estimada** 🕒
 
-## Available Scripts
+3 horas
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## **Rick & Morty App**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### **INTRO**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+En esta homework, vamos a crear una serie de Componentes de React, que luego van a formar parte de nuestro primer desarrollo front-end.
 
-### `npm test`
+> **Nota**: Todos los Componentes que hagamos en este homework son `Puros`, por lo tanto, ninguno tiene estado, simplemente reciben datos por props. No te preocupes por el estilo de los componentes. En la siguiente homework vamos a dárselos.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+### **ESTRUCTURA**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+🔹 Dentro de la carpeta `02 - Integration`, vas a encontrar la siguiente estructura:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+-  Una carpeta llamada **img**
+-  Una carpeta llamada **public**
+-  Una carpeta llamada `src` (Es la carpeta en donde trabajaremos)
+-  Un archivo **package.json**
+-  Y el archivo `README.md` que ahora mismo estás leyendo. 🧐
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Además:
 
-### `npm run eject`
+🔹 Dentro de la carpeta `src` vas a encontrar ya el esqueleto del proyecto React, estructurado de la siguiente manera, donde deberás codear cada Componente:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+-  Una carpeta llamada **components**
+-  Un archivo llamado **App.css**
+-  Un archivo llamado **App.js**
+-  Un archivo llamado **data.js**
+-  Un archivo **index.css**
+-  Un archivo **index.js**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+> **Nota**: Sabemos que los Componentes de React tienen que cumplir el principio de una única responsabilidad, es decir que cada Componente debe cumplir una única tarea bien definida.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<img src="./img/ramas.jpg" alt="" />
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+</br >
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<div align="center" >
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## **🚀 PARTE UNO 🚀**
 
-### Code Splitting
+</div >
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<br />
 
-### Analyzing the Bundle Size
+Tu primer paso será ejecutar el comando `npm install` para instalar todas las dependencias.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+En el archivo `App.js` ya tenemos importados y estamos renderizando los 3 componentes que vamos a codear. Revisa el código, verás que le estamos pasando props a estos componentes.
 
-### Making a Progressive Web App
+<br />
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## **👩‍💻 01 Componente Card**
 
-### Advanced Configuration
+Este componente **`Card`** va a mostrar las propiedades:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+-  **name**: nombre.
+-  **species**: especie.
+-  **genre**: género.
+-  **image**: imagen.
+-  **onClose**: función que se va a ejecutar cuando el usuario haga click en el botón de cerrar.
 
-### Deployment
+Además cuando el usuario haga click en la X de "cerrar", se invocará una función que también viene como props (**onClose**).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+El objetivo de este componente es mostrar la información de un personaje.
 
-### `npm run build` fails to minify
+<img src="./img/characterCard.png" height="250px">
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+> [**NOTA**]: más adelante todos estos datos van a venir de una API externa, pero por ahora no nos interesa esa parte. Por el momento nosotros te los vamos a brindar desde un archivo local **`(src/data.js)`**, para que ya puedas ver tu componente funcionando.
+
+<br />
+
+---
+
+## **👩‍💻 02 - Componente Cards**
+
+Este componente nos va a servir para renderizar muchos componentes `Card`. Es decir, será el "contenedor" de las Card.
+
+Recibirá un arreglo de **`personajes`** (con todos sus datos), y va a utilizar un componente **`Card`**(reutilizando el mismo que ya hicimos en el punto anterior) por cada uno de ellos, pasándole las props correspondientes.
+
+<img src="./img/Cards.png" height="250px">
+
+> [**NOTA**]: utilizar el método **`map`** y devolver un componente **`Card`** por cada elemento del arreglo. [**Acá**](https://es.reactjs.org/docs/lists-and-keys.html#rendering-multiple-components) un ejemplo de la documentación de React.
+
+<br />
+
+---
+
+## **👩‍💻 03 Componente SearchBar**
+
+Este componente nos permitirá buscar y agregar nuevos personajes a nuestra página.
+
+Recibe por props una función **`onSearch`**. Dicha función recibe un parámetro que por el momento no estará definido.
+
+La función **`onSearch`** se debe ejecutar cuando se haga click en el botón **`Agregar`**.
+
+<img src="./img/SearchBar.png" height="50px">
+
+<br />
+
+---
+
+<div align="center" >
+
+## **🚀 PARTE DOS 🚀**
+
+</div >
+
+<br />
+
+### **¡Listo! Es hora de crear nuestra app...**
+
+¿Ya completaste los puntos anteriores y todo funciona? ¡Perfecto! Ya podemos comenzar a crear nuestra propia app:
+
+1. En tu terminal, dirígete a un nuevo directorio (por ejemplo, tu escritorio). Allí es dónde crearemos nuestra app.
+
+2. Ahora utiliza **_`CRA`_** (create-react-app) mediante **npx** para crear una nueva app de React:
+
+```bash
+npx create-react-app rick_and_morty
+```
+
+> [**NOTA**]: para el nombre de tu app no puedes usar mayúsculas ni el símbolo "&".
+
+Al término del proceso, podrás ver que en tu directorio se creó una nueva carpeta llamada "rick_and_morty". Abre esta carpeta con tu Visual Studio Code. Allí encontrarás algo como esto:
+
+<img src="./img/cra_01.png" height="200px">
+
+3. Dentro de esta nueva carpeta ejecuta:
+
+```bash
+    npm start
+```
+
+> [**NOTA**]: si aún tenemos corriendo el server local de la homework Integration Parte 1, vamos a obtener un error debido a que el puerto predeterminado (3000) está ocupado. Podemos elegir utilizar otro puerto, o terminar el proceso anterior y luego reintentarlo.
+
+Esperamos que se "levante" el servidor local y luego veremos algo así:
+
+<img src="./img/cra_02.gif" height="360px">
+
+<br />
+
+---
+
+<div align="center" >
+
+## **🚀 PARTE TRES 🚀**
+
+</div >
+
+<br />
+
+Ahora simplemente debes seguir estos pasos:
+
+1. Reemplaza la carpeta **`src`** de tu nuevo proyecto por la que tienes en esta carpeta ([**src**](./src/)).
+
+2. Comprueba que en el navegador deberías ver los cambios.
+
+Listo! Ya tienes tu primer app hecha con React 👏🏼.

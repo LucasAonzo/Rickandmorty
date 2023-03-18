@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;700&display=swap");
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 50%;
+  background-color: #87f54e;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin: 50px;
+}
+
+.img {
+  position: relative;
+  top: -30px;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.button {
+  position: relative;
+  z-index: 2;
+  top: 5px;
+  left: 125px;
+  width: 30px;
+  height: 30px;
+  background-color: #e17676;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.h1 {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 27px;
+  margin: 0px;
+}
+
+.h2 {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 27px;
+  margin: 0px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 1000px) {
+  .container {
+    margin-bottom: 50px;
+  }
+}
+
+@media (max-width: 500px) {
+  .container {
+    width: 60%;
+  }
+  .img {
+    width: 100%;
+    height: 100%;
+  }
+  .button {
+    scale: 0.9;
+    left: calc(50% - 20px);
+  }
+}

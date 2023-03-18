@@ -4,6 +4,8 @@ import Nav from "./components/NavBar/Nav.jsx";
 import { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -23,19 +25,30 @@ function App() {
           const isDuplicate = characters.some((char) => char.id === data.id);
 
           if (isDuplicate) {
-            window.alert("Este personaje ya fue agregado anteriormente");
+            toast.error(`El personaje ${data.name} ya fue agregado`);
           } else {
             // Agregar el personaje a la lista de personajes si no es un duplicado
             setCharacters((oldChars) => [...oldChars, data]);
           }
         } else {
-          window.alert("No hay personajes con ese ID");
+          toast.error(`El personaje con id ${characterId} no existe`);
         }
       });
   };
 
+  // const onClose = (characterId) => {
+  //   setCharacters((oldChars) => oldChars.filter((c) => c.id !== characterId));
+  // };
+
   const onClose = (characterId) => {
-    setCharacters((oldChars) => oldChars.filter((c) => c.id !== characterId));
+    setCharacters((oldChars) =>
+      oldChars.filter((c) => {
+        if (c.id === characterId) {
+          toast.success(`El personaje ${c.name} fue eliminado`);
+        }
+        return c.id !== characterId;
+      })
+    );
   };
 
   return (
@@ -43,6 +56,7 @@ function App() {
       <Nav onSearch={onSearch} />
 
       <Cards characters={characters} onClose={onClose} />
+      <ToastContainer position="bottom-right" autoClose={3000} />
     </div>
   );
 }

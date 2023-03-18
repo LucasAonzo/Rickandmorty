@@ -41,7 +41,9 @@ function App() {
   return (
     <div className="App">
       <Nav onSearch={onSearch} />
-      <Cards characters={characters} onClose={onClose} />
+      <div className="ConteinerApp">
+        <Cards characters={characters} onClose={onClose} />
+      </div>
     </div>
   );
 }

@@ -3,7 +3,9 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+
   background-image: url(./cielo.png);
+  min-height: 1000px;
 }
 
 @media (max-width: 1000px) {

@@ -1,0 +1,131 @@
+.div {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.titulo {
+  font-size: 32px;
+  font-weight: bold;
+  color: #555;
+}
+
+.parrafo {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 52px;
+  text-align: center;
+
+  color: #ffffff;
+}
+
+.imagenlogo {
+  width: 500px;
+  margin-bottom: 50px;
+}
+
+.CardContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 500px;
+  height: 450px;
+  margin: 0 auto;
+  margin-top: 200px;
+  justify-content: center;
+  border: 1px solid red;
+  background: rgba(30, 29, 32, 0.84);
+
+  border: 1px solid #ffffff;
+  border-radius: 72px;
+  margin-bottom: 100px;
+}
+
+.imagenprofile {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  justify-content: center;
+  margin: 0 auto;
+  position: relative;
+  top: -120px;
+}
+
+a {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 18px;
+  text-decoration: none;
+  color: #555;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+p {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 52px;
+  text-align: center;
+  color: #87f54e;
+}
+
+.nombre {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 52px;
+  text-align: center;
+  position: relative;
+  top: -120px;
+  color: #ffffff;
+  background: linear-gradient(
+    89.73deg,
+    #a458f4 0.14%,
+    #7a81e9 39.29%,
+    #00f8c8 99.69%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.git {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  position: relative;
+  top: -120px;
+}
+
+@media (max-width: 600px) {
+  .CardContainer {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    margin-top: 200px;
+    justify-content: center;
+    margin-bottom: 100px;
+  }
+
+  .imagenlogo {
+    width: 100%;
+  }
+
+  .imagenprofile {
+    scale: 0.7;
+    border-radius: 50%;
+    justify-content: center;
+    margin: 0 auto;
+    position: relative;
+    top: -150px;
+  }
+}

@@ -1,11 +1,14 @@
 import "./App.css";
 import Cards from "./components/Cards/Cards.jsx";
 import Nav from "./components/NavBar/Nav.jsx";
+import About from "./components/About/About.jsx";
+import Detail from "./components/Detail/Detail.jsx";
 import { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -51,11 +54,27 @@ function App() {
     );
   };
 
+  //   return (
+  //     <div className="App">
+  //       <Nav onSearch={onSearch} />
+
+  //       <Cards characters={characters} onClose={onClose} />
+  //       <ToastContainer position="bottom-right" autoClose={3000} />
+  //     </div>
+  //   );
+  // }
+
   return (
     <div className="App">
       <Nav onSearch={onSearch} />
-
-      <Cards characters={characters} onClose={onClose} />
+      <Routes>
+        <Route
+          path="/"
+          element={<Cards characters={characters} onClose={onClose} />}
+        />
+        <Route path="/About" element={<About />} />
+        <Route path="/detail/:detailId" element={<Detail />} />
+      </Routes>
       <ToastContainer position="bottom-right" autoClose={3000} />
     </div>
   );

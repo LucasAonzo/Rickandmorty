@@ -9,7 +9,7 @@
 .search {
   padding-left: 10px;
   border-radius: 15px;
-  width: 375px;
+  width: 250px;
   height: 36px;
   font-family: "IBM Plex Mono";
   font-style: normal;
@@ -32,7 +32,7 @@
   padding: 14px 40px;
   gap: 5px;
 
-  width: 166px;
+  width: 100px;
   height: 42px;
 
   background: #87f54e;

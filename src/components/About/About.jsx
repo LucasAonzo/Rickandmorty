@@ -29,7 +29,7 @@ function About() {
         visitar mi perfil de Github:
       </p>
       <div className={style.CardContainer}>
-        <Link to="https://github.com/LucasAonzo">
+        <Link to={{ pathname: "https://github.com/LucasAonzo" }}>
           <img className={style.imagenprofile} src={img} alt="Foto de perfil" />
           <h1 className={style.nombre}>Lucas Aonzo</h1>
           <img className={style.git} src={git} alt="" />

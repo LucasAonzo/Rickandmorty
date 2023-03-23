@@ -3,21 +3,36 @@ import Cards from "./components/Cards/Cards.jsx";
 import Nav from "./components/NavBar/Nav.jsx";
 import About from "./components/About/About.jsx";
 import Detail from "./components/Detail/Detail.jsx";
+import Form from "./components/Form/Form.jsx";
+import Form1 from "./components/Form/Form1";
 import { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 
 function App() {
   const [characters, setCharacters] = useState([]);
+  const [access, setAccess] = useState(false);
+  const username = "lucasaonzo@gmail.com";
+  const password = "lucas123";
+  const navigate = useNavigate();
+
+  //App.js
+  useEffect(() => {
+    !access && navigate("/");
+  }, [access]);
 
   useEffect(() => {
     AOS.init({
       once: true,
     });
   }, []);
+
+  const location = useLocation();
+
+  const showNav = location.pathname !== "/";
 
   const onSearch = (characterId) => {
     fetch(`https://rickandmortyapi.com/api/character/${characterId}`)
@@ -39,10 +54,6 @@ function App() {
       });
   };
 
-  // const onClose = (characterId) => {
-  //   setCharacters((oldChars) => oldChars.filter((c) => c.id !== characterId));
-  // };
-
   const onClose = (characterId) => {
     setCharacters((oldChars) =>
       oldChars.filter((c) => {
@@ -54,26 +65,38 @@ function App() {
     );
   };
 
-  //   return (
-  //     <div className="App">
-  //       <Nav onSearch={onSearch} />
+  function login(userData) {
+    if (userData.username === username && userData.password === password) {
+      setAccess(true);
+      toast.success("Bienvenido");
+      navigate("/home");
+    } else {
+      toast.error("Usuario o contraseña incorrectos");
+    }
+  }
 
-  //       <Cards characters={characters} onClose={onClose} />
-  //       <ToastContainer position="bottom-right" autoClose={3000} />
-  //     </div>
-  //   );
-  // }
+  function logout() {
+    setAccess(false);
+    toast.success("Hasta luego");
+    navigate("/");
+  }
 
   return (
     <div className="App">
-      <Nav onSearch={onSearch} />
+      {showNav && <Nav onSearch={onSearch} onLogout={logout} />}
       <Routes>
-        <Route
-          path="/"
-          element={<Cards characters={characters} onClose={onClose} />}
-        />
-        <Route path="/About" element={<About />} />
-        <Route path="/detail/:detailId" element={<Detail />} />
+        <Route path="/" element={<Form1 onSubmit={login} />} />
+
+        {access && (
+          <>
+            <Route
+              path="/home"
+              element={<Cards characters={characters} onClose={onClose} />}
+            />
+            <Route path="/about" element={<About />} />
+            <Route path="/detail/:detailId" element={<Detail />} />
+          </>
+        )}
       </Routes>
       <ToastContainer position="bottom-right" autoClose={3000} />
     </div>

@@ -7,15 +7,11 @@ import style from "./SearchBar.module.css";
 import React, { useState } from "react";
 
 const SearchBar = (props) => {
-  const [id, setId] = useState("");
+  const [searchText, setSearchText] = useState("");
 
   const handleChange = (e) => {
-    setId(e.target.value);
-  };
-
-  const handleClick = (e) => {
-    e.preventDefault();
-    props.onSearch(id);
+    setSearchText(e.target.value);
+    props.onSearch(e.target.value);
   };
 
   return (
@@ -24,11 +20,8 @@ const SearchBar = (props) => {
         className={style.search}
         type="text"
         onChange={handleChange}
-        placeholder="Agregar personaje"
+        placeholder="Buscar personaje"
       />
-      <button className={style.button} onClick={handleClick}>
-        Agregar
-      </button>
     </div>
   );
 };

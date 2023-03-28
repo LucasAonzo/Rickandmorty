@@ -3,7 +3,6 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
-  color: blue;
 }
 
 .commonPageClass {
@@ -29,5 +28,10 @@
   color: #000000;
   background-color: #87f54e;
   padding: 5px 10px;
-  border-radius: 5px;
+}
+
+@media (max-width: 500px) {
+  .commonPageClass {
+    font-size: 12px;
+  }
 }

@@ -13,6 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 
 function App() {
+  const [searchText, setSearchText] = useState("");
   const [access, setAccess] = useState(false);
   const username = "lucasaonzo@gmail.com";
   const password = "lucas123";
@@ -36,6 +37,10 @@ function App() {
     toast.success(`El personaje fue eliminado`);
   };
 
+  const handleSearch = (text) => {
+    setSearchText(text);
+  };
+
   function login(userData) {
     if (userData.username === username && userData.password === password) {
       setAccess(true);
@@ -54,16 +59,19 @@ function App() {
 
   return (
     <div className="App">
-      {showNav && <Nav onLogout={logout} />}
+      {showNav && <Nav onSearch={handleSearch} onLogout={logout} />}
       <Routes>
         <Route path="/" element={<Form1 onSubmit={login} />} />
 
         {access && (
           <>
-            <Route path="/home" element={<Pagination onClose={onClose} />} />
+            <Route
+              path="/home"
+              element={<Pagination searchText={searchText} onClose={onClose} />}
+            />
             <Route
               path="/home/page/:pageNum"
-              element={<Pagination onClose={onClose} />}
+              element={<Pagination searchText={searchText} onClose={onClose} />}
             />
             <Route path="/about" element={<About />} />
             <Route path="/detail/:detailId" element={<Detail />} />

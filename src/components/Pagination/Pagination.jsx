@@ -4,10 +4,9 @@ import Cards from "../Cards/Cards.jsx";
 import { useParams } from "react-router-dom";
 import style from "./Pagination.module.css";
 
-const Pagination = ({ onClose }) => {
+const Pagination = ({ searchText, onClose }) => {
   const [page, setPage] = useState(1);
   const [characters, setCharacters] = useState([]);
-
   const { pageNum } = useParams();
   const currentPage = parseInt(pageNum, 10) || 1;
 
@@ -18,14 +17,14 @@ const Pagination = ({ onClose }) => {
   useEffect(() => {
     const fetchCharacters = async () => {
       const response = await fetch(
-        `https://rickandmortyapi.com/api/character/?page=${page}`
+        `https://rickandmortyapi.com/api/character/?name=${searchText}&page=${page}`
       );
       const data = await response.json();
       setCharacters(data.results);
     };
 
     fetchCharacters();
-  }, [page]);
+  }, [searchText, page]);
 
   const scrollToTop = () => {
     window.scrollTo({

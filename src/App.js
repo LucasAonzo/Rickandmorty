@@ -15,8 +15,8 @@ import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 function App() {
   const [searchText, setSearchText] = useState("");
   const [access, setAccess] = useState(false);
-  const username = "lucasaonzo@gmail.com";
-  const password = "lucas123";
+  const username = "prueba@gmail.com";
+  const password = "prueba123";
   const navigate = useNavigate();
 
   useEffect(() => {

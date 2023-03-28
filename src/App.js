@@ -1,5 +1,5 @@
 import "./App.css";
-import Cards from "./components/Cards/Cards.jsx";
+import Pagination from "./components/Pagination/Pagination.jsx";
 import Nav from "./components/NavBar/Nav.jsx";
 import About from "./components/About/About.jsx";
 import Detail from "./components/Detail/Detail.jsx";
@@ -13,13 +13,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 
 function App() {
-  const [characters, setCharacters] = useState([]);
   const [access, setAccess] = useState(false);
   const username = "lucasaonzo@gmail.com";
   const password = "lucas123";
   const navigate = useNavigate();
 
-  //App.js
   useEffect(() => {
     !access && navigate("/");
   }, [access]);
@@ -34,35 +32,8 @@ function App() {
 
   const showNav = location.pathname !== "/";
 
-  const onSearch = (characterId) => {
-    fetch(`https://rickandmortyapi.com/api/character/${characterId}`)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.name) {
-          // Verificar si el personaje ya existe en la lista de personajes
-          const isDuplicate = characters.some((char) => char.id === data.id);
-
-          if (isDuplicate) {
-            toast.error(`El personaje ${data.name} ya fue agregado`);
-          } else {
-            // Agregar el personaje a la lista de personajes si no es un duplicado
-            setCharacters((oldChars) => [...oldChars, data]);
-          }
-        } else {
-          toast.error(`El personaje con id ${characterId} no existe`);
-        }
-      });
-  };
-
   const onClose = (characterId) => {
-    setCharacters((oldChars) =>
-      oldChars.filter((c) => {
-        if (c.id === characterId) {
-          toast.success(`El personaje ${c.name} fue eliminado`);
-        }
-        return c.id !== characterId;
-      })
-    );
+    toast.success(`El personaje fue eliminado`);
   };
 
   function login(userData) {
@@ -83,15 +54,16 @@ function App() {
 
   return (
     <div className="App">
-      {showNav && <Nav onSearch={onSearch} onLogout={logout} />}
+      {showNav && <Nav onLogout={logout} />}
       <Routes>
         <Route path="/" element={<Form1 onSubmit={login} />} />
 
         {access && (
           <>
+            <Route path="/home" element={<Pagination onClose={onClose} />} />
             <Route
-              path="/home"
-              element={<Cards characters={characters} onClose={onClose} />}
+              path="/home/page/:pageNum"
+              element={<Pagination onClose={onClose} />}
             />
             <Route path="/about" element={<About />} />
             <Route path="/detail/:detailId" element={<Detail />} />

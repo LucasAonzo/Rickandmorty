@@ -1,0 +1,33 @@
+.navcointeiner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  color: blue;
+}
+
+.commonPageClass {
+  background: #ffffff;
+  border: 1px solid #dfe3e8;
+  border-radius: 4px;
+  text-decoration: none;
+  margin: 0 10px;
+  padding: 5px 10px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  /* or 143% */
+
+  text-align: center;
+
+  /* Dark Grey / 400 */
+
+  color: #212b36;
+}
+.activePage {
+  color: #000000;
+  background-color: #87f54e;
+  padding: 5px 10px;
+  border-radius: 5px;
+}

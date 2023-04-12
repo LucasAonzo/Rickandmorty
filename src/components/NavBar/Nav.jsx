@@ -25,6 +25,9 @@ export default function Nav(props) {
         <Link className={style.url} to="/about">
           About
         </Link>
+        <Link className={style.url} to="/favorites">
+          Favorites
+        </Link>
         <h3 onClick={props.onLogout} className={style.url}>
           Logout
         </h3>

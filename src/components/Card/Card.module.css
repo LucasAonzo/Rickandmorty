@@ -17,7 +17,7 @@
 
 .img {
   position: relative;
-  top: -30px;
+  top: -80px;
   z-index: 1;
   width: 100%;
   height: 100%;
@@ -28,7 +28,7 @@
 .button {
   position: relative;
   z-index: 2;
-  top: 5px;
+  top: -18px;
   left: 125px;
   width: 30px;
   height: 30px;
@@ -39,6 +39,23 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   font-weight: bold;
+}
+.fav {
+  position: relative;
+  z-index: 2;
+  top: 10px;
+  left: -125px;
+  display: flex;
+  height: 30px;
+  width: 30px;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  font-size: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  border: none;
 }
 
 .h1 {
@@ -77,5 +94,9 @@
   .button {
     scale: 0.9;
     left: calc(50% - 20px);
+  }
+  .fav {
+    scale: 0.9;
+    left: calc(50% - 215px);
   }
 }

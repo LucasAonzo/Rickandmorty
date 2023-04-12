@@ -1,18 +1,47 @@
-// Este componente Card va a mostrar las propiedades:
-
-// name: nombre.
-// species: especie.
-// genre: género.
-// image: imagen.
-// onClose: función que se va a ejecutar cuando el usuario haga click en el botón de cerrar.
-// Además cuando el usuario haga click en la X de "cerrar", se invocará una función que también viene como props (onClose).
-
+import { useEffect, useState } from "react";
 import style from "./Card.module.css";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { addFavorites, removeFavorites } from "../../redux/actions";
 
-export default function Card(props) {
+function Card(props) {
+  const [isFav, setIsFav] = useState(false);
+  const { character, myFavorites, onClose } = props;
+
+  const handleFavorite = () => {
+    if (isFav) {
+      setIsFav(false);
+      if (character && character.id) {
+        // Verificar si character tiene la propiedad id
+        props.removeFavorites(character.id);
+      }
+    } else {
+      setIsFav(true);
+      props.addFavorites(character);
+    }
+  };
+
+  useEffect(() => {
+    if (myFavorites) {
+      myFavorites.forEach((fav) => {
+        if (fav.id === character.id) {
+          setIsFav(true);
+        }
+      });
+    }
+  }, [myFavorites, character.id]);
+
   return (
     <div data-aos="fade-up" className={style.container}>
+      {isFav ? (
+        <button className={style.fav} onClick={handleFavorite}>
+          ❤️
+        </button>
+      ) : (
+        <button className={style.fav} onClick={handleFavorite}>
+          🤍
+        </button>
+      )}
       <button className={style.button} onClick={props.onClose}>
         X
       </button>
@@ -28,3 +57,18 @@ export default function Card(props) {
     </div>
   );
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addFavorites: (character) => dispatch(addFavorites(character)),
+    removeFavorites: (characterId) => dispatch(removeFavorites(characterId)),
+  };
+};
+
+const mapStateToProps = (state) => {
+  return {
+    myFavorites: state.myFavorites,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Card);

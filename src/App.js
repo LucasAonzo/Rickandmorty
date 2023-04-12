@@ -5,6 +5,7 @@ import About from "./components/About/About.jsx";
 import Detail from "./components/Detail/Detail.jsx";
 import Form from "./components/Form/Form.jsx";
 import Form1 from "./components/Form/Form1";
+import Favorite from "./components/Favorite/Favorite.jsx";
 import { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -73,6 +74,7 @@ function App() {
               path="/home/page/:pageNum"
               element={<Pagination searchText={searchText} onClose={onClose} />}
             />
+            <Route path="/favorites" element={<Favorite />} />
             <Route path="/about" element={<About />} />
             <Route path="/detail/:detailId" element={<Detail />} />
           </>
